@@ -7,13 +7,18 @@ namespace Identity.Controllers
     [ApiController]
     public class IdentityController : ControllerBase
     {
+        private IAgifyClient _agifyClient;
 
-        [HttpGet]
-        public IActionResult GetIdentity(string name)
+        public IdentityController(IAgifyClient agifyClient)
         {
-            return Ok(new IdentityDto { Name = name, Age = 51 });
+            _agifyClient = agifyClient;
         }
-
-
+    
+        [HttpGet]
+        public async Task<IActionResult> GetIdentity(string name)
+        {
+            var response = await _agifyClient.GetAge(name);
+            return Ok(response);
+        }
     }
 }

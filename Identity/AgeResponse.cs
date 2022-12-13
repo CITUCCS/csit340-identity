@@ -1,8 +1,7 @@
 ﻿namespace Identity
 {
-    public class IdentityDto
+    public class AgeResponse
     {
-        public string Name { get; set; }
         public int Age { get; set; }
     }
 }
